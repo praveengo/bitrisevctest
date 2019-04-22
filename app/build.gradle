@@ -10,7 +10,7 @@ android {
         applicationId "com.example.bitrisevctest"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 1
+        versionCode getVersionCodeGradle()
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -31,3 +31,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+def getVersionCodeGradle() {
+    def bitRiseBuildNumber = System.getenv("BITRISE_BUILD_NUMBER")
+    return (bitRiseBuildNumber <= 0) ? 12 : bitRiseBuildNumber
+}
+
+
